@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Favicon</title>
+</head>
+<body>
+    <canvas id="canvas16" width="16" height="16"></canvas>
+    <canvas id="canvas32" width="32" height="32"></canvas>
+    <canvas id="canvas64" width="64" height="64"></canvas>
+    <script>
+        function drawFavicon(canvas) {
+            const ctx = canvas.getContext('2d');
+            const size = canvas.width;
+            const center = size / 2;
+            const radius = (size / 2) - 1;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Background circle - black
+            ctx.fillStyle = '#1a1a1a';
+            ctx.beginPath();
+            ctx.arc(center, center, radius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw S for Sports
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `bold ${size * 0.5}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('S', center, center + 1);
+            
+            // Draw sports ball lines (simplified)
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = size / 20;
+            
+            // Horizontal line
+            ctx.beginPath();
+            ctx.moveTo(size * 0.15, center);
+            ctx.lineTo(size * 0.85, center);
+            ctx.stroke();
+            
+            // Vertical line
+            ctx.beginPath();
+            ctx.moveTo(center, size * 0.15);
+            ctx.lineTo(center, size * 0.85);
+            ctx.stroke();
+        }
+        
+        // Draw on all canvases
+        drawFavicon(document.getElementById('canvas16'));
+        drawFavicon(document.getElementById('canvas32'));
+        drawFavicon(document.getElementById('canvas64'));
+        
+        // Instructions for saving
+        document.body.innerHTML += '<p>Right-click each canvas and save as: favicon-16x16.png, favicon-32x32.png, and favicon.ico (from 64x64)</p>';
+    </script>
+</body>
+</html>
