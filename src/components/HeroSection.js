@@ -18,24 +18,73 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative bg-white overflow-hidden min-h-[600px]">
+    <section className="relative bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        <div className="grid lg:grid-cols-12 gap-8">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8">
 
           {/* Main Featured Article */}
           <div className="lg:col-span-9 relative">
-            {/* Background Circle Shape */}
-            <div className="absolute -left-32 lg:-left-48 top-1/3 w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] bg-gray-100 rounded-full opacity-40"></div>
+            {/* Background Circle Shape - Hidden on mobile */}
+            <div className="hidden lg:block absolute -left-48 top-1/3 w-[600px] h-[600px] bg-gray-100 rounded-full opacity-40"></div>
 
             <div className="relative z-10">
-              <div className="grid lg:grid-cols-2 items-start">
+              {/* Mobile Layout */}
+              <div className="lg:hidden">
+                <motion.h1
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="text-3xl sm:text-4xl font-black leading-tight mb-6"
+                >
+                  <span className="block text-[#3E3E3E]">TOP SCORER TO</span>
+                  <span className="block text-[#8E8E8E]">THE FINAL</span>
+                  <span className="block text-[#C8C8C8]">MATCH</span>
+                </motion.h1>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8 }}
+                  className="flex justify-center mb-6"
+                >
+                  <img
+                    src='/images/basketball-player.png'
+                    alt="Basketball player"
+                    className="w-[200px] sm:w-[250px] h-auto object-contain"
+                    style={{ filter: 'grayscale(100%)' }}
+                  />
+                </motion.div>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="text-gray-600 text-sm mb-4"
+                >
+                  The EuroLeague Finals Top Scorer is the individual award for the player that gained the highest points in the EuroLeague Finals
+                </motion.p>
+
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full sm:w-auto px-6 py-2.5 bg-black text-white text-sm font-medium tracking-wider hover:bg-gray-800 transition-colors duration-200"
+                >
+                  CONTINUE READING
+                </motion.button>
+              </div>
+
+              {/* Desktop Layout */}
+              <div className="hidden lg:grid lg:grid-cols-2 items-start">
                 {/* Title - Left Side */}
                 <div className="order-2 lg:order-1">
                   <motion.h1
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-[80px] font-black leading-none"
+                    className="text-6xl xl:text-[80px] font-black leading-none"
                   >
                     <span className="block text-[#3E3E3E]">TOP</span>
                     <span className="block text-[#3E3E3E]">SCORER TO</span>
@@ -54,40 +103,33 @@ const HeroSection = () => {
                   <img
                     src='/images/basketball-player.png'
                     alt="Basketball player"
-                    className="relative top-8 w-[250px] sm:w-[300px] lg:w-[350px] xl:w-[580px] h-auto object-contain"
+                    className="relative top-8 w-[350px] xl:w-[580px] h-auto object-contain"
                     style={{ filter: 'grayscale(100%)' }}
                   />
                   <div className="max-w-[320px] absolute right-2 -bottom-32">
-                    <div className=''>
-                      <motion.p
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                      className="text-gray-600 text-sm lg:text-base mb-6 text-left"
+                    >
+                      The EuroLeague Finals Top Scorer is the individual award for the player that gained the highest points in the EuroLeague Finals
+                    </motion.p>
+                    <div className='flex'>
+                      <motion.button
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        className="text-gray-600 text-sm lg:text-base mb-6 text-left"
+                        transition={{ duration: 0.6, delay: 0.5 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-8 py-3 bg-black text-white text-sm font-medium tracking-wider hover:bg-gray-800 transition-colors duration-200"
                       >
-                        The EuroLeague Finals Top Scorer is the individual award for the player that gained the highest points in the EuroLeague Finals
-                      </motion.p>
-                      <div className='flex'>
-                        <motion.button
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.5 }}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="px-8 py-3 bg-black text-white text-sm font-medium tracking-wider hover:bg-gray-800 transition-colors duration-200"
-                        >
-                          CONTINUE READING
-                        </motion.button>
-                      </div>
-
-
+                        CONTINUE READING
+                      </motion.button>
                     </div>
                   </div>
                 </motion.div>
               </div>
-
-              {/* Description and Button - Below Image */}
-
             </div>
           </div>
 
