@@ -44,8 +44,7 @@ const Navbar = () => {
               transition={{ type: 'spring', stiffness: 400 }}
             >
               <h1 className="text-2xl">
-                <span className="font-light italic text-black">Sport</span>
-                <span className="font-normal text-black"> News</span>
+                <span className="font-regular italic text-black font-darkline">Sport News</span>
               </h1>
             </motion.div>
 
@@ -55,7 +54,7 @@ const Navbar = () => {
                 <div key={item.name} className="relative group">
                   <motion.button
                     onClick={() => setActiveItem(item.name)}
-                    className={`px-3 py-2 transition-all duration-200 ${
+                    className={`px-3 py-2 transition-all duration-200 font-dm text-[15px] ${
                       activeItem === item.name 
                         ? 'text-black font-bold' 
                         : 'text-[#26262699] hover:text-black font-normal'
@@ -76,7 +75,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 400 }}
               >
-                <button className="flex items-center space-x-2 px-4 py-2 bg-[#B8C2CE] rounded-lg transition-colors duration-200">
+                <button className="flex items-center space-x-2 pl-[15px] pr-[10px] py-2 bg-[#B8C2CE] rounded-lg transition-colors duration-200">
                   <svg
                     className="w-4 h-4 text-white"
                     fill="none"
