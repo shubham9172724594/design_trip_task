@@ -52,7 +52,7 @@ const RecentNewsAndRankings = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-2xl lg:text-3xl font-normal text-gray-900 mb-8"
+              className="text-left text-2xl lg:text-3xl font-normal text-gray-900 mb-8"
             >
               Recent News
             </motion.h2>
@@ -63,10 +63,10 @@ const RecentNewsAndRankings = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="relative w-72 h-72 rounded-xl overflow-hidden group cursor-pointer flex-shrink-0"
+                className="relative w-72 h-72 rounded-md overflow-hidden group cursor-pointer flex-shrink-0"
               >
                 <img 
-                  src={recentNews[0].image}
+                  src={'/images/karateFighter.png'}
                   alt={recentNews[0].title}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
