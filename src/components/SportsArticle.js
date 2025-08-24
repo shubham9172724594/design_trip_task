@@ -8,7 +8,7 @@ const SportsArticle = () => {
     {
       id: 1,
       category: 'Basketball',
-      image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=400&fit=crop',
+      image: '/images/sportArticle1.png',
       author: {
         name: 'Jake Will',
         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face'
@@ -67,7 +67,7 @@ const SportsArticle = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-2xl lg:text-3xl font-normal text-gray-900 mb-10"
+          className="text-left text-2xl lg:text-3xl font-normal text-gray-900 mb-10"
         >
           Sports Article
         </motion.h2>
