@@ -1,6 +1,35 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50,
+    scale: 0.9
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+      damping: 12
+    }
+  }
+};
+
 const CategorySection = () => {
   const categories = [
     {
@@ -41,13 +70,19 @@ const CategorySection = () => {
           Category
         </motion.h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {/* Football - Text then Image */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            variants={itemVariants}
             className="space-y-4"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: 'spring', stiffness: 300 }}
           >
             <div className="bg-[#E8EBF0] rounded-lg p-6 h-32 flex items-center justify-center group cursor-pointer hover:bg-[#DDE1E8] transition-colors">
               <h3 className="text-xl font-bold text-gray-600 group-hover:text-gray-800 transition-colors">
@@ -66,10 +101,10 @@ const CategorySection = () => {
 
           {/* Basketball - Image then Text */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            variants={itemVariants}
             className="space-y-4"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: 'spring', stiffness: 300 }}
           >
             <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
               <img
@@ -88,10 +123,10 @@ const CategorySection = () => {
 
           {/* Car Sport - Text then Image */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            variants={itemVariants}
             className="space-y-4"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: 'spring', stiffness: 300 }}
           >
             <div className="bg-[#E8EBF0] rounded-lg p-6 h-32 flex items-center justify-center group cursor-pointer hover:bg-[#DDE1E8] transition-colors">
               <h3 className="text-xl font-bold text-gray-600 group-hover:text-gray-800 transition-colors">
@@ -110,10 +145,10 @@ const CategorySection = () => {
 
           {/* Table Tennis - Image then Text */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            variants={itemVariants}
             className="space-y-4"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: 'spring', stiffness: 300 }}
           >
             <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
               <img
@@ -129,7 +164,7 @@ const CategorySection = () => {
               </h3>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,7 +1,12 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const HeroSection = () => {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 300], [0, -50]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.5]);
+  const scale = useTransform(scrollY, [0, 300], [1, 0.95]);
+
   const todayNews = [
     {
       id: 1,
@@ -25,7 +30,10 @@ const HeroSection = () => {
           {/* Main Featured Article */}
           <div className="lg:col-span-9 relative">
             {/* Background Circle Shape - Hidden on mobile */}
-            <div className="hidden lg:block absolute -left-48 top-1/3 w-[600px] h-[600px] bg-gray-100 rounded-full opacity-40"></div>
+            <motion.div 
+              style={{ y }}
+              className="hidden lg:block absolute -left-48 top-1/3 w-[600px] h-[600px] bg-gray-100 rounded-full opacity-40"
+            />
 
             <div className="relative z-10">
               {/* Mobile Layout */}
@@ -98,6 +106,7 @@ const HeroSection = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8 }}
+                  style={{ opacity, scale }}
                   className="order-1 lg:order-2 relative flex justify-center lg:justify-end"
                 >
                   <img

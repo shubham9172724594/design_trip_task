@@ -26,9 +26,15 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, type: 'spring', stiffness: 120 }}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ 
+          y: 0, 
+          opacity: 1,
+          transition: {
+            y: { type: 'spring', stiffness: 120, damping: 20 },
+            opacity: { duration: 0.3 }
+          }
+        }}
         className={`fixed w-full top-0 z-50 transition-all duration-300 ${
           scrolled 
             ? 'bg-white/98 backdrop-blur-lg shadow-md py-3' 

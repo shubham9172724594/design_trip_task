@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 const FeaturedArticle = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
+  const { scrollY } = useScroll();
+  const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
+  const opacity = useTransform(scrollY, [0, 500], [1, 0.8]);
 
   const articles = [
     {
@@ -62,18 +65,25 @@ const FeaturedArticle = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main Featured Article */}
-        <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, type: 'spring' }}
+          className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden"
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
               className="absolute inset-0"
             >
               {/* Background Image */}
-              <img
+              <motion.img
+                style={{ scale }}
                 src={'/images/football2.png'}
                 alt={currentArticle.title}
                 className="absolute inset-0 w-full h-full object-cover"
@@ -130,7 +140,7 @@ const FeaturedArticle = () => {
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </motion.div>
 
         {/* Navigation */}
         <div className="flex items-center justify-end mt-8 gap-10">

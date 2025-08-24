@@ -1,6 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      damping: 12,
+      stiffness: 100
+    }
+  }
+};
+
 const RecentNewsAndRankings = () => {
   const recentNews = [
     {
@@ -44,8 +68,9 @@ const RecentNewsAndRankings = () => {
           <div>
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, type: 'spring' }}
               className="text-left text-2xl lg:text-3xl font-normal text-gray-900 mb-8"
             >
               Recent News
@@ -55,8 +80,10 @@ const RecentNewsAndRankings = () => {
               {/* Featured Article - Left */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, type: 'spring' }}
+                whileHover={{ scale: 1.03 }}
                 className="relative w-72 h-72 rounded-md overflow-hidden group cursor-pointer flex-shrink-0"
               >
                 <img
@@ -82,8 +109,10 @@ const RecentNewsAndRankings = () => {
                   <motion.article
                     key={article.id}
                     initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: (index + 1) * 0.1 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: (index + 1) * 0.1, type: 'spring' }}
+                    whileHover={{ x: 5 }}
                     className="flex gap-4 group cursor-pointer"
                   >
                     <div className="w-20 h-20 flex-shrink-0 overflow-hidden rounded-lg bg-gray-200">
@@ -107,8 +136,11 @@ const RecentNewsAndRankings = () => {
                 {/* More Button */}
                 <motion.button
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   className="px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-medium rounded-lg transition-colors mt-6"
                 >
                   More →
@@ -121,14 +153,21 @@ const RecentNewsAndRankings = () => {
           <div>
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1, type: 'spring' }}
               className="text-2xl lg:text-3xl font-normal text-gray-900 mb-8"
             >
               Clubs Ranking
             </motion.h2>
 
-            <div className="bg-gray-50 rounded-lg overflow-x-auto">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: 'spring' }}
+              className="bg-gray-50 rounded-lg overflow-x-auto"
+            >
               {/* Table wrapper for mobile scroll */}
               <div className="min-w-[360px]">
                 {/* Table Header */}
@@ -149,8 +188,10 @@ const RecentNewsAndRankings = () => {
                     <motion.div
                       key={team.position}
                       initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.05, type: 'spring' }}
+                      whileHover={{ backgroundColor: 'rgba(243, 244, 246, 1)' }}
                       className="flex items-center gap-1 sm:gap-2 px-2 py-2 text-xs sm:text-sm hover:bg-gray-100 transition-colors"
                     >
                       <div className="w-6 sm:w-8 font-medium text-gray-900">
@@ -170,7 +211,7 @@ const RecentNewsAndRankings = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

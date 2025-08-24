@@ -46,8 +46,9 @@ const TrendingNews = () => {
           <div>
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: 'spring' }}
               className="text-left text-2xl lg:text-3xl font-normal text-gray-900 mb-8"
             >
               Trending News
@@ -58,8 +59,10 @@ const TrendingNews = () => {
                 <motion.article
                   key={article.id}
                   initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1, type: 'spring' }}
+                  whileHover={{ x: 10, scale: 1.02 }}
                   className="group cursor-pointer"
                 >
                   <div className="flex gap-4">

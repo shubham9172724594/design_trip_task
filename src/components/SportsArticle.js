@@ -1,8 +1,24 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: 'spring',
+      damping: 15,
+      stiffness: 100
+    }
+  }
+};
 
 const SportsArticle = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 1000], [0, -50]);
 
   const articles = [
     {
@@ -65,8 +81,9 @@ const SportsArticle = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
           className="text-left text-2xl lg:text-3xl font-normal text-gray-900 mb-10"
         >
           Sports Article
@@ -77,14 +94,21 @@ const SportsArticle = () => {
             {getVisibleArticles().map((article, index) => (
               <motion.article
                 key={`${article.id}-${currentSlide}`}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
                 className="group cursor-pointer"
               >
                 {/* Article Image */}
-                <div className="relative h-64 rounded-xl overflow-hidden mb-4">
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative h-64 rounded-xl overflow-hidden mb-4"
+                >
                   <img
                     src={article.image}
                     alt={article.title}
@@ -98,7 +122,7 @@ const SportsArticle = () => {
                       {article.category}
                     </span>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Author Info */}
                 <div className="flex items-center gap-3 mb-3">
