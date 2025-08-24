@@ -31,7 +31,7 @@ const Navbar = () => {
         transition={{ duration: 0.5, type: 'spring', stiffness: 120 }}
         className={`fixed w-full top-0 z-50 transition-all duration-300 ${
           scrolled 
-            ? 'bg-white/98 backdrop-blur-sm shadow-md py-3' 
+            ? 'bg-white/98 backdrop-blur-lg shadow-md py-3' 
             : 'bg-white py-4'
         }`}
       >
