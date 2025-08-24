@@ -74,7 +74,7 @@ const FeaturedArticle = () => {
             >
               {/* Background Image */}
               <img
-                src={currentArticle.image}
+                src={'/images/football2.png'}
                 alt={currentArticle.title}
                 className="absolute inset-0 w-full h-full object-cover"
               />

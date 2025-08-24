@@ -54,10 +54,10 @@ const HeroSection = () => {
                   <img
                     src='/images/basketball-player.png'
                     alt="Basketball player"
-                    className="w-[250px] sm:w-[300px] lg:w-[350px] xl:w-[580px] h-auto object-contain"
+                    className="relative top-8 w-[250px] sm:w-[300px] lg:w-[350px] xl:w-[580px] h-auto object-contain"
                     style={{ filter: 'grayscale(100%)' }}
                   />
-                  <div className="max-w-[320px] absolute right-2 -bottom-16">
+                  <div className="max-w-[320px] absolute right-2 -bottom-32">
                     <div className=''>
                       <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -93,7 +93,7 @@ const HeroSection = () => {
 
           {/* Today's News Sidebar */}
           <div className="lg:col-span-3">
-            <div className="bg-[#F8F9FA] rounded-lg p-5">
+            <div className="bg-[#F8F9FA] rounded-lg p-5 pt-0">
               <div>
 
                 <h3 className="text-[20px] rounded-[3px] text-[#B8C2CE] font-normal mb-5 bg-[#E1E8F0] p-1 px-4 w-[90px] text-center">Today</h3>
@@ -113,10 +113,10 @@ const HeroSection = () => {
                         <img
                           src={news.image}
                           alt={news.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          className="w-full h-[150px] object-cover group-hover:scale-105 transition-transform duration-700"
                         />
                       </div>
-                      <div className="p-4">
+                      <div className="p-2">
                         <div className="flex text-left items-center gap-2 text-[11px] text-gray-500 mb-2">
                           <span>{news.date}</span>
                         </div>
