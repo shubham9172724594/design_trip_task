@@ -1,23 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import { motion } from "framer-motion";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <div className="flex justify-center items-center h-screen bg-gray-100">
+      <motion.div
+        className="w-32 h-32 bg-blue-500 rounded-lg"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, type: "spring" }}
+      />
+    </div>
     </div>
   );
 }
