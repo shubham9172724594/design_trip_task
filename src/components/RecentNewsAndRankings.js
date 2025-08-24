@@ -51,7 +51,7 @@ const RecentNewsAndRankings = () => {
               Recent News
             </motion.h2>
 
-            <div className="flex gap-6">
+            <div className="md:flex gap-6">
               {/* Featured Article - Left */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -77,7 +77,7 @@ const RecentNewsAndRankings = () => {
               </motion.div>
 
               {/* News List - Right */}
-              <div className="flex-1 space-y-4">
+              <div className="flex-1 space-y-4 mt-2 md:mt-0">
                 {recentNews.map((article, index) => (
                   <motion.article
                     key={article.id}
@@ -128,45 +128,47 @@ const RecentNewsAndRankings = () => {
               Clubs Ranking
             </motion.h2>
 
-            <div className="bg-gray-50 rounded-lg overflow-hidden">
-              {/* Table Header */}
-              <div className="flex items-center gap-2 px-2 py-2 bg-gray-100 text-xs font-medium text-gray-600 uppercase tracking-wide">
-                <div className="flex-1 text-left">Club</div>
-                <div className="w-8"></div>
-                <div className="w-10 text-center">GP</div>
-                <div className="w-10 text-center">W</div>
-                <div className="w-10 text-center">D</div>
-                <div className="w-10 text-center">L</div>
-                <div className="w-10 text-center">F</div>
-                <div className="w-10 text-center">A</div>
-              </div>
+            <div className="bg-gray-50 rounded-lg overflow-x-auto">
+              {/* Table wrapper for mobile scroll */}
+              <div className="min-w-[360px]">
+                {/* Table Header */}
+                <div className="flex items-center gap-1 sm:gap-2 px-2 py-2 bg-gray-100 text-xs font-medium text-gray-600 uppercase tracking-wide">
+                  <div className="w-6 sm:w-8">#</div>
+                  <div className="flex-1 text-left min-w-[120px] sm:min-w-[140px]">Club</div>
+                  <div className="w-8 sm:w-10 text-center">GP</div>
+                  <div className="w-8 sm:w-10 text-center">W</div>
+                  <div className="w-8 sm:w-10 text-center">D</div>
+                  <div className="w-8 sm:w-10 text-center">L</div>
+                  <div className="w-8 sm:w-10 text-center">F</div>
+                  <div className="w-8 sm:w-10 text-center">A</div>
+                </div>
 
-              {/* Table Rows */}
-              <div className="divide-y divide-gray-200">
-                {clubRankings.map((team, index) => (
-                  <motion.div
-                    key={team.position}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                    className="flex items-center gap-2 px-2 py-2 text-sm hover:bg-gray-100 transition-colors"
-                  >
-                    <div className="w-8 font-medium text-gray-900">
-                      {team.position}
-                    </div>
-                    <div className="flex-1 flex items-center gap-2 min-w-0">
-                      {/* <span className="text-base flex-shrink-0">{team.logo}</span> */}
-                      <img src={team.logo} className='h-6 w-6'/>
-                      <span className="font-medium text-gray-900 truncate">{team.club}</span>
-                    </div>
-                    <div className="w-10 text-center text-gray-600">{team.gp}</div>
-                    <div className="w-10 text-center text-gray-600">{team.w}</div>
-                    <div className="w-10 text-center text-gray-600">{team.d}</div>
-                    <div className="w-10 text-center text-gray-600">{team.l}</div>
-                    <div className="w-10 text-center text-gray-600">{team.f}</div>
-                    <div className="w-10 text-center text-gray-600">{team.a}</div>
-                  </motion.div>
-                ))}
+                {/* Table Rows */}
+                <div className="divide-y divide-gray-200">
+                  {clubRankings.map((team, index) => (
+                    <motion.div
+                      key={team.position}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                      className="flex items-center gap-1 sm:gap-2 px-2 py-2 text-xs sm:text-sm hover:bg-gray-100 transition-colors"
+                    >
+                      <div className="w-6 sm:w-8 font-medium text-gray-900">
+                        {team.position}
+                      </div>
+                      <div className="flex-1 flex items-center gap-1 sm:gap-2 min-w-[120px] sm:min-w-[140px]">
+                        <img src={team.logo} className='h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0'/>
+                        <span className="font-medium text-gray-900 truncate">{team.club}</span>
+                      </div>
+                      <div className="w-8 sm:w-10 text-center text-gray-600">{team.gp}</div>
+                      <div className="w-8 sm:w-10 text-center text-gray-600">{team.w}</div>
+                      <div className="w-8 sm:w-10 text-center text-gray-600">{team.d}</div>
+                      <div className="w-8 sm:w-10 text-center text-gray-600">{team.l}</div>
+                      <div className="w-8 sm:w-10 text-center text-gray-600">{team.f}</div>
+                      <div className="w-8 sm:w-10 text-center text-gray-600">{team.a}</div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
